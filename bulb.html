@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Image Gallery</title>
+    <link rel="stylesheet" href="/Bootstrap Website/lib/bootstrap-5.2.3-dist/css/bootstrap-grid.min.css">
+    <!-- <link rel="stylesheet" href="styles.css"> -->
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+}
+
+.gallery {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.main-image-container {
+    display: flex;
+    align-items: center;
+}
+
+.main-image {
+    width: 400px;
+    height: auto;
+    margin: 0 20px;
+}
+
+.small-images {
+    display: flex;
+    flex-direction: column;
+}
+
+.small {
+    width: 100px;
+    height: auto;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.banner {
+    width: 100%;
+    height: auto;
+}
+    </style>
+</head>
+
+<body>
+    <div class="gallery">
+        <img id="banner" src="/img/banner01.jpg" alt="banner01 Image" class="banner">
+        <div class="main-image-container mt-5">
+            <img id="main-image" src="/img/p1.jpg" alt="p1" class="main-image">
+           
+            <div class="small-images " style="width: 70%;">  </div> <!-- Container for small images -->
+            <div class="small-img2 "><img src="/img/p2b.jpg" alt="p2a" style="width: 60%; padding-left: 140px;">
+            </div>
+        </div>
+    </div>
+     <script>
+        // Array of images
+const smallImagesArray = [
+    '/img/p1.jpg',
+    '/img/p2.jpg',
+    '/img/p2b.jpg'
+];
+
+const mainImageSrcs = [
+    '/img/p1.jpg',
+    '/img/p1.jpg'
+];
+
+const bannerImages = [
+    '/img/banner01.jpg',
+   // '/img/banner03.jpg',
+    '/img/banner02.png'
+];
+
+// Select the main image and banner image
+const mainImage = document.getElementById('main-image');
+const bannerImage = document.getElementById('banner');
+
+// Create small images dynamically
+const smallImagesContainer = document.querySelector('.small-images');
+
+smallImagesArray.forEach((src, index) => {
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = `Small Image ${index + 1}`;
+    img.className = 'small';
+    
+    // Add event listener to change main image on hover
+    img.addEventListener('mouseenter', () => {
+        mainImage.src = src; // Change main image to the hovered small image
+    });
+
+    smallImagesContainer.appendChild(img);
+});
+
+// Change banner image on hover
+bannerImage.addEventListener('mouseenter', () => {
+    bannerImage.src = bannerImages[1]; // Change to a different banner image on hover
+});
+
+bannerImage.addEventListener('mouseleave', () => {
+    bannerImage.src = bannerImages[0]; // Revert back to the original banner image
+});
+
+// Change main image on hover
+mainImage.addEventListener('mouseenter', () => {
+    mainImage.src = mainImageSrcs[1]; // Change to a different main image on hover
+});
+
+mainImage.addEventListener('mouseleave', () => {
+    mainImage.src = mainImageSrcs[0]; // Revert back to the original main image
+});
+    </script> 
+
+    <script src="/Bootstrap Website/lib/bootstrap-5.2.3-dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
